@@ -5,3 +5,5 @@ Add
 Substract
 
 Division
+
+Multiply
