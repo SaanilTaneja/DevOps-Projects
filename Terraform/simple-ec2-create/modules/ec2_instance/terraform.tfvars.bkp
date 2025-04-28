@@ -1,0 +1,4 @@
+instance_type="t2.micro"
+ami="ami-0e35ddab05955cf57"
+subnet_id="subnet-04cb69f4d9762dbe0"
+keyvalue_pair="keypair"
