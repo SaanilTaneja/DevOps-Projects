@@ -2,6 +2,7 @@
 minikube start
 minikube status
 minikube ssh
+minikube ip
 
 # [Kubectl]
 kubectl get all
@@ -9,6 +10,7 @@ kubectl get all -A
 
 # [Node]
 kubectl get nodes
+kubectl get nodes -o wide
 
 # [Pods]
 kubectl create -f simple-pod.yaml
@@ -17,6 +19,7 @@ kubectl delete pod nginx
 kubectl get pods
 kubectl get pods -o wide
 kubectl get pods -w 
+kubectl get pods -v=7
 kubectl describe pod nginx
 kubectl port-forward pod/nginx 80:80
 
@@ -26,9 +29,21 @@ kubectl apply -f simple-deployment.yaml
 kubectl delete deploy nginx-deployment
 kubectl get deploy
 kubectl get deploy -o wide
+kubectl get deploy -v=7
 
 # [Deployment - Replica Set]
 kubectl get rs
+kubectl get rs -o wide
+kubectl get rs -v=7
+
+# [Service]
+kubectl create -f service.yaml
+kubectl apply -f service.yaml
+kubetctl get svc
+kubectl get svc -o wide
+kubectl get svc -v=7
+kubectl edit svc simple-service
+kubectl delete svc simple-service
 
 # [Logs]
 kubectl logs nginx
