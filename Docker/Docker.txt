@@ -1,0 +1,32 @@
+# Create Dockerfile first
+
+# Build the container from Dockerfile 
+docker build -t saaniltaneja/firstapp:v1.0 .
+
+# Run the container
+docker run -d --name firstapp saaniltaneja/firstapp:v1.0
+
+# Docker commands
+docker images
+docker rmi
+docker ps -a
+docker rm
+docker start/stop firstapp
+docker pause/unpause firstapp
+docker inspect firstapp
+
+# Execute and open an interactive terminal in the running container
+docker exec -it saaniltaneja/firstapp:v1.0 /bin/bash 
+
+# Network
+docker network create secure-network
+docker network rm secure-network
+docker network ls
+docker run -d --name django --network secure-network saaniltaneja/djago-app:v1.0 
+
+# Volume
+docker volume create volume1
+docker volume rm volume1
+docker volume ls
+docker volume inspect volume1
+docker run -d --name firstapp --mount source=volume1,target=/app saaniltaneja/firstapp:v1.0

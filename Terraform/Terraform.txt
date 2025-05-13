@@ -1,0 +1,60 @@
+Terraform Commands:
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+
+terraform fmt
+terraform apply -replace 
+terraform import
+terraform validate 
+terraform show
+terraform output
+terraform refresh
+terraform console
+terraform graph | dot -Tpng > graph.png
+
+Terraform State Commands:
+terraform state show
+terraform state rm
+terraform state list
+terraform state mv
+terraform state pull
+terraform state push
+terraform state replace-provider
+
+Terraform Workspaces Commands:
+terraform workspace list
+terraform workspace show
+terraform workspace new <>
+terraform workspace select <>
+terraform workspace delete <>
+terraform workspace select default 
+
+Variables:
+String - text
+Number - numerical value
+Bool - true/false
+List - ordered seq of values
+Set - collection of unique values
+Map - collection of key-value pairs
+Object - collection of named attributes 
+Tuple - seq of values of different types
+
+Terraform Function:
+abs - returns absolute value of num
+ceil - rounds up to nearest whole num
+floor - rounds down to nearest whole num
+max - returns max value from list of num
+min - return min value from a list of num
+concat - concatenates multiple string together 
+element - returns the element in the specific index in a list
+length - returns the length of a string/list
+lower - string to lowercase
+upper - string to uppercase
+replace - replace occurrences of a substring in a string 
+split - splits a string into substrings based on delimiter
+join - joins many strings into one using a delimiter
+format - format string using placeholder and values
+jsonencode - convert value to jaon
+jsondecode - convert json to its value

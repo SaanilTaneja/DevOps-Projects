@@ -1,0 +1,34 @@
+# [Minikube]
+minikube start
+minikube status
+minikube ssh
+
+# [Kubectl]
+kubectl get all
+kubectl get all -A
+
+# [Node]
+kubectl get nodes
+
+# [Pods]
+kubectl create -f simple-pod.yaml
+kubectl apply -f simple-pod.yaml
+kubectl delete pod nginx
+kubectl get pods
+kubectl get pods -o wide
+kubectl get pods -w 
+kubectl describe pod nginx
+kubectl port-forward pod/nginx 80:80
+
+# [Deployment]
+kubectl create -f simple-deployment.yaml
+kubectl apply -f simple-deployment.yaml
+kubectl delete deploy nginx-deployment
+kubectl get deploy
+kubectl get deploy -o wide
+
+# [Deployment - Replica Set]
+kubectl get rs
+
+# [Logs]
+kubectl logs nginx
