@@ -39,7 +39,7 @@ kubectl get rs -v=7
 # [Service]
 kubectl create -f service.yaml
 kubectl apply -f service.yaml
-kubetctl get svc
+kubectl get svc
 kubectl get svc -o wide
 kubectl get svc -v=7
 kubectl edit svc simple-service
