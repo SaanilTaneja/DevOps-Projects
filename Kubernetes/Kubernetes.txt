@@ -20,11 +20,12 @@ kubectl get pods
 kubectl get pods -o wide
 kubectl get pods -w 
 kubectl get pods -v=7
+kubectl get pods -n nginx
 kubectl describe pod nginx
 kubectl port-forward pod/nginx 80:80
+kubectl exec -it simple-pod -- /bin/bash
 
 # [Deployment]
-kubectl create -f simple-deployment.yaml
 kubectl apply -f simple-deployment.yaml
 kubectl delete deploy nginx-deployment
 kubectl get deploy
@@ -36,8 +37,7 @@ kubectl get rs
 kubectl get rs -o wide
 kubectl get rs -v=7
 
-# [Service]
-kubectl create -f service.yaml
+# [Service] - ClusterIP, NodePort, LoadBalancer
 kubectl apply -f service.yaml
 kubectl get svc
 kubectl get svc -o wide
@@ -45,5 +45,32 @@ kubectl get svc -v=7
 kubectl edit svc simple-service
 kubectl delete svc simple-service
 
+# [Ingress Controller]
+minikube addons enable ingress
+kubectl apply -f ingress.yaml
+kubectl get ingress
+kubectl get ingress -o wide
+kubectl delete ingress simple-ingress
+
+# [Config Maps]
+kubectl apply -f cm.yaml 
+kubectl get cm
+kubectl describe cm simple-cm
+kubectl edit cm simple-cm 
+
+# [Secrets]
+kubectl create secret generic simple-secret --from-literal=db-port="3306"
+kubectl apply -f secret.yaml
+kubectl get secret
+kubectl describe secret simple-secret
+kubectl edit secret simple-secret
+echo <secretvalue> | base64 --decode
+
 # [Logs]
 kubectl logs nginx
+
+# [Kubeshark]
+sh <(curl -Ls https://kubeshark.co/install)
+kubeshark tap
+kubeshark proxy
+kubeshark clean
