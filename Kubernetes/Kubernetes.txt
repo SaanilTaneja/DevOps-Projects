@@ -1,5 +1,6 @@
 # [Minikube]
 minikube start
+minikube start --memory=4098 --driver=hyperkit
 minikube status
 minikube ssh
 minikube ip
@@ -16,7 +17,7 @@ kubectl get nodes -o wide
 kubectl create -f simple-pod.yaml
 kubectl apply -f simple-pod.yaml
 kubectl delete pod nginx
-kubectl get pods
+kubectl get pods -A
 kubectl get pods -o wide
 kubectl get pods -w 
 kubectl get pods -v=7
@@ -28,6 +29,7 @@ kubectl exec -it simple-pod -- /bin/bash
 # [Deployment]
 kubectl apply -f simple-deployment.yaml
 kubectl delete deploy nginx-deployment
+kubectl create deployment nginx --image=nginx
 kubectl get deploy
 kubectl get deploy -o wide
 kubectl get deploy -v=7
@@ -74,3 +76,20 @@ sh <(curl -Ls https://kubeshark.co/install)
 kubeshark tap
 kubeshark proxy
 kubeshark clean
+
+# [Prometheus]
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/prometheus
+kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
+kubectl get svc
+minikube ip
+kubectl edit cm prometheus-server
+
+# [Grafana]
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install grafana grafana/grafana
+kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-ext
+kubectl get svc
+minikube ip
