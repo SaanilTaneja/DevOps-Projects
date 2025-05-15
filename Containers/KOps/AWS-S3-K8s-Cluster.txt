@@ -1,0 +1,5 @@
+aws s3api create-bucket --bucket saaniltaneja-kops-storage --region us-east-1
+kops create cluster --name=demok8scluster.k8s.local --state=s3://saaniltaneja-kops-storage --zones=us-east-1a --node-count=1 --node-size=t2.micro --master-size=t2.micro  --master-volume-size=8 --node-volume-size=8
+kops get cluster --name=demok8scluster.k8s.local --state=s3://saaniltaneja-kops-storage -o yaml
+kops edit cluster demok8scluster.k8s.local --state=s3://saaniltaneja-kops-storage
+kops delete cluster demok8scluster.k8s.local --state=s3://saaniltaneja-kops-storage --yes

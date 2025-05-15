@@ -1,0 +1,27 @@
+# 1. Base Packages
+apt install nmap net-tools tree jenkins docker.io openjdk-17-jre git python3 python3-pip apt-transport-https 
+kubectl kubelet ca-certificates curl gnupg conntrack socat ebtables ethtool software-properties-common iptables iproute2 unzip
+
+# 2. AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# 3. Terraform
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \ https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt-get install terraform
+
+# 4. Minikube
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+
+# 5. KOps
+curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+chmod +x kops-linux-amd64
+sudo mv kops-linux-amd64 /usr/local/bin/kops
+
+# 6. Cri-O (Container Runtime)
+wget https://download.opensuse.org/repositories/isv:/cri-o:/stable:/v1.32/deb/amd64/cri-o_1.32.3-1.1_amd64.deb
+dpkg -i cri-o_1.32.3-1.1_amd64.deb
